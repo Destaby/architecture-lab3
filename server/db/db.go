@@ -9,7 +9,8 @@ import (
 
 type Connection struct {
 	DbName         string
-	User, Password string
+	User					 string
+	Password 			 string
 	Host           string
 	DisableSSL     bool
 }
