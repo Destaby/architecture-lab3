@@ -6,7 +6,7 @@ const Client = baseUrl => {
   return {
     listBalancers: () => client.get('/balancers'),
     updateWorkingStatus: (id, working) =>
-      client.put('/balancers', { id, working }),
+      client.put('/machines', { id, working }),
   };
 };
 

@@ -2,12 +2,11 @@ package system
 
 import (
 	"database/sql"
-	"fmt"
 )
 
 type Balancer struct {
 	Id   	int64  `json:"id"`
-	Job 	string `json:"name"`
+	Job 	string `json:"job"`
 }
 
 type Store struct {
@@ -42,11 +41,11 @@ func NewStore(db *sql.DB) *Store {
 
 type Machine struct {
 	Id   				int64  `json:"id"`
-	Working 		string `json:"name"`
+	Working 		bool 	 `json:"working"`
 	Balancer_id	int64  `json:"id"`
 }
 
-func (s *Store) UpdateMachineStatus(id int, working bool) error {
+func (s *Store) UpdateMachineStatus(id int64, working bool) error {
 	_, err := s.Db.Exec("UPDATE machines SET working = $1 where id = $2", working, id)
 	return err
 }

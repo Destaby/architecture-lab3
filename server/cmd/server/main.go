@@ -31,7 +31,7 @@ func main() {
 	if server, err := ComposeApiServer(HttpPortNumber(*httpPortNumber)); err == nil {
 		// Start it.
 		go func() {
-			log.Println("Starting chat server...")
+			log.Println("Starting system server...")
 
 			err := server.Start()
 			if err == http.ErrServerClosed {
@@ -50,6 +50,6 @@ func main() {
 			log.Printf("Error stopping the server: %s", err)
 		}
 	} else {
-		log.Fatalf("Cannot initialize chat server: %s", err)
+		log.Fatalf("Cannot initialize system server: %s", err)
 	}
 }

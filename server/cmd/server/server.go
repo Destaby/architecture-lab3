@@ -23,7 +23,7 @@ type SystemApiServer struct {
 // Returned error will never be nil.
 func (s *SystemApiServer) Start() error {
 	if s.SystemHandler == nil {
-		return fmt.Errorf("channels HTTP handler is not defined - cannot start")
+		return fmt.Errorf("system HTTP handler is not defined - cannot start")
 	}
 	if s.Port == 0 {
 		return fmt.Errorf("port is not defined")
@@ -31,6 +31,7 @@ func (s *SystemApiServer) Start() error {
 
 	handler := new(http.ServeMux)
 	handler.HandleFunc("/balancers", s.SystemHandler)
+	handler.HandleFunc("/machines", s.SystemHandler)
 
 	s.server = &http.Server{
 		Addr:    fmt.Sprintf(":%d", s.Port),
