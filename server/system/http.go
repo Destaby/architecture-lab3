@@ -13,9 +13,9 @@ type HttpHandlerFunc http.HandlerFunc
 // HttpHandler creates a new instance of system HTTP handler.
 func HttpHandler(store *Store) HttpHandlerFunc {
 	return func(rw http.ResponseWriter, r *http.Request) {
-		/*if r.Method == "GET" {
+	/*	if (r.Method == "GET" && r.URL.Path == "/balancers") {
 			handleListBalancers(store, rw)
-		} else*/ if r.Method == "PUT" {
+		} else*/ if (r.Method == "PUT" && r.URL.Path == "/machines") {
 			handleUpdateWorkingStatus(r, rw, store)
 		} else {
 			rw.WriteHeader(http.StatusMethodNotAllowed)
