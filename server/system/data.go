@@ -57,7 +57,9 @@ func (s *Store) ListBalancers() ([]*ListBalancersResponse, error) {
 		if ind != -1 {
 			res[ind].UsedMachines = append(res[ind].UsedMachines, c.Machines_id)
 		} else {
-			balancer := &ListBalancersResponse{c.Id, make([]int64, c.Machines_id), c.Total_machines}
+			machines := make([]int64, 1)
+			machines[0] = c.Machines_id
+			balancer := &ListBalancersResponse{c.Id, machines, c.Total_machines}
 			res = append(res, balancer)
 		}
 	}
@@ -70,7 +72,7 @@ func (s *Store) ListBalancers() ([]*ListBalancersResponse, error) {
 type Machine struct {
 	Id          int64 `json:"id"`
 	Working     bool  `json:"working"`
-	Balancer_id int64 `json:"id"`
+	Balancer_id int64 `json:"balancer_id"`
 }
 
 func (s *Store) UpdateMachineStatus(id int64, working bool) error {
